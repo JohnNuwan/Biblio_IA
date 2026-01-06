@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Bibliothèque IA - Méthode Bmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>📚 Bibliothèque IA - Méthode Bmad</h1>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher..." oninput="filterTree()">
+        </div>
+
+        <nav class="nav-tree" id="navTree"></nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <div class="breadcrumb" id="breadcrumb">📚 Bibliothèque</div>
+        </header>
+
+        <div class="content-body">
+            <div id="content" class="markdown-body">
+                <div class="welcome">
+                    <h1>📚 Bibliothèque IA</h1>
+                    <p>Votre ressource complète pour maîtriser les LLMs, le prompt engineering et l'IA agentique.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="number">22</div>
+                            <div class="label">Méthodes IA</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="number">234</div>
+                            <div class="label">Prompts</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="number">14</div>
+                            <div class="label">Guides</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Structure COMPLETE avec chemins vérifiés
+        const fileStructure = {
+            "📖 INDEX": { type: "file", path: "INDEX.md" },
+            "🧠 Méthodes IA": {
+                type: "folder",
+                children: {
+                    "BMAD": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode BMAD/METHODE_BMAD_EXPLICATION.md" },
+                            "Analyste": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/Analyste Prompt.md" },
+                            "Architect": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/Architect.md" },
+                            "Dev": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/Dev.md" },
+                            "PM": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/PM.md" },
+                            "PO": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/PO.md" },
+                            "SM": { type: "file", path: "Méthode BMAD/Promp_Méthode_BMAD/SM.md" }
+                        }
+                    },
+                    "ReAct": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode ReAct/METHODE_REACT_EXPLICATION.md" },
+                            "Agent Planificateur": { type: "file", path: "Méthode ReAct/Prompts_Méthode_ReAct/Agent Planificateur.md" },
+                            "Agent Raisonneur": { type: "file", path: "Méthode ReAct/Prompts_Méthode_ReAct/Agent Raisonneur.md" },
+                            "Agent Acteur": { type: "file", path: "Méthode ReAct/Prompts_Méthode_ReAct/Agent Acteur.md" },
+                            "Agent Observateur": { type: "file", path: "Méthode ReAct/Prompts_Méthode_ReAct/Agent Observateur.md" },
+                            "Agent Réflexif": { type: "file", path: "Méthode ReAct/Prompts_Méthode_ReAct/Agent Réflexif.md" }
+                        }
+                    },
+                    "Chain-of-Thought": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Chain-of-Thought/METHODE_COT_EXPLICATION.md" },
+                            "Agent Décomposeur": { type: "file", path: "Méthode Chain-of-Thought/Prompts_Méthode_CoT/Agent Décomposeur.md" },
+                            "Agent Raisonneur": { type: "file", path: "Méthode Chain-of-Thought/Prompts_Méthode_CoT/Agent Raisonneur.md" },
+                            "Agent Vérificateur": { type: "file", path: "Méthode Chain-of-Thought/Prompts_Méthode_CoT/Agent Vérificateur.md" },
+                            "Agent Synthétiseur": { type: "file", path: "Méthode Chain-of-Thought/Prompts_Méthode_CoT/Agent Synthétiseur.md" }
+                        }
+                    },
+                    "Reflexion": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Reflexion/METHODE_REFLEXION_EXPLICATION.md" },
+                            "Agent Exécuteur": { type: "file", path: "Méthode Reflexion/Prompts_Méthode_Reflexion/Agent Exécuteur.md" },
+                            "Agent Évaluateur": { type: "file", path: "Méthode Reflexion/Prompts_Méthode_Reflexion/Agent Évaluateur.md" },
+                            "Agent Réflecteur": { type: "file", path: "Méthode Reflexion/Prompts_Méthode_Reflexion/Agent Réflecteur.md" },
+                            "Agent Mémoire": { type: "file", path: "Méthode Reflexion/Prompts_Méthode_Reflexion/Agent Mémoire.md" },
+                            "Agent Améliorateur": { type: "file", path: "Méthode Reflexion/Prompts_Méthode_Reflexion/Agent Améliorateur.md" }
+                        }
+                    },
+                    "Tree-of-Thoughts": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Tree-of-Thoughts/METHODE_TOT_EXPLICATION.md" },
+                            "Agent Générateur": { type: "file", path: "Méthode Tree-of-Thoughts/Prompts_Méthode_ToT/Agent Générateur.md" },
+                            "Agent Évaluateur": { type: "file", path: "Méthode Tree-of-Thoughts/Prompts_Méthode_ToT/Agent Évaluateur.md" },
+                            "Agent Sélectionneur": { type: "file", path: "Méthode Tree-of-Thoughts/Prompts_Méthode_ToT/Agent Sélectionneur.md" },
+                            "Agent Explorateur": { type: "file", path: "Méthode Tree-of-Thoughts/Prompts_Méthode_ToT/Agent Explorateur.md" }
+                        }
+                    },
+                    "Self-Consistency": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Self-Consistency/METHODE_SELF_CONSISTENCY_EXPLICATION.md" },
+                            "Agent Échantillonneur": { type: "file", path: "Méthode Self-Consistency/Prompts_Méthode_SC/Agent Échantillonneur.md" },
+                            "Agent Agrégateur": { type: "file", path: "Méthode Self-Consistency/Prompts_Méthode_SC/Agent Agrégateur.md" },
+                            "Agent Analyseur": { type: "file", path: "Méthode Self-Consistency/Prompts_Méthode_SC/Agent Analyseur.md" }
+                        }
+                    },
+                    "CRITIC": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode CRITIC/METHODE_CRITIC_EXPLICATION.md" },
+                            "Agent Répondeur": { type: "file", path: "Méthode CRITIC/Prompts_Méthode_CRITIC/Agent Répondeur.md" },
+                            "Agent Critique": { type: "file", path: "Méthode CRITIC/Prompts_Méthode_CRITIC/Agent Critique.md" },
+                            "Agent Correcteur": { type: "file", path: "Méthode CRITIC/Prompts_Méthode_CRITIC/Agent Correcteur.md" },
+                            "Agent Validateur": { type: "file", path: "Méthode CRITIC/Prompts_Méthode_CRITIC/Agent Validateur.md" }
+                        }
+                    },
+                    "Skeleton-of-Thought": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Skeleton-of-Thought/METHODE_SOT_EXPLICATION.md" },
+                            "Agent Squelettiseur": { type: "file", path: "Méthode Skeleton-of-Thought/Prompts_Méthode_SoT/Agent Squelettiseur.md" },
+                            "Agent Rédacteur": { type: "file", path: "Méthode Skeleton-of-Thought/Prompts_Méthode_SoT/Agent Rédacteur.md" },
+                            "Agent Assembleur": { type: "file", path: "Méthode Skeleton-of-Thought/Prompts_Méthode_SoT/Agent Assembleur.md" }
+                        }
+                    },
+                    "Plan-and-Solve": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Plan-and-Solve/METHODE_PAS_EXPLICATION.md" },
+                            "Agent Planificateur": { type: "file", path: "Méthode Plan-and-Solve/Prompts_Méthode_PaS/Agent Planificateur.md" },
+                            "Agent Solveur": { type: "file", path: "Méthode Plan-and-Solve/Prompts_Méthode_PaS/Agent Solveur.md" }
+                        }
+                    },
+                    "Least-to-Most": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Least-to-Most/METHODE_LTM_EXPLICATION.md" },
+                            "Agent Décomposeur": { type: "file", path: "Méthode Least-to-Most/Prompts_Méthode_LtM/Agent Décomposeur.md" },
+                            "Agent Résolveur": { type: "file", path: "Méthode Least-to-Most/Prompts_Méthode_LtM/Agent Résolveur.md" }
+                        }
+                    },
+                    "Program-of-Thoughts": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Program-of-Thoughts/METHODE_POT_EXPLICATION.md" },
+                            "Agent Codeur": { type: "file", path: "Méthode Program-of-Thoughts/Prompts_Méthode_PoT/Agent Codeur.md" },
+                            "Agent Exécuteur": { type: "file", path: "Méthode Program-of-Thoughts/Prompts_Méthode_PoT/Agent Exécuteur.md" }
+                        }
+                    },
+                    "Scratchpad": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Scratchpad/METHODE_SCRATCHPAD_EXPLICATION.md" },
+                            "Agent Travailleur": { type: "file", path: "Méthode Scratchpad/Prompts_Méthode_Scratchpad/Agent Travailleur.md" }
+                        }
+                    },
+                    "RAG": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode RAG/METHODE_RAG_EXPLICATION.md" },
+                            "Agent Indexeur": { type: "file", path: "Méthode RAG/Prompts_Méthode_RAG/Agent Indexeur.md" },
+                            "Agent Chercheur": { type: "file", path: "Méthode RAG/Prompts_Méthode_RAG/Agent Chercheur.md" },
+                            "Agent Générateur": { type: "file", path: "Méthode RAG/Prompts_Méthode_RAG/Agent Générateur.md" }
+                        }
+                    },
+                    "Constitutional AI": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Constitutional-AI/METHODE_CAI_EXPLICATION.md" },
+                            "Agent Critique": { type: "file", path: "Méthode Constitutional-AI/Prompts_Méthode_CAI/Agent Critique.md" },
+                            "Agent Réviseur": { type: "file", path: "Méthode Constitutional-AI/Prompts_Méthode_CAI/Agent Réviseur.md" }
+                        }
+                    },
+                    "GraphRAG": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode GraphRAG/METHODE_GRAPHRAG_EXPLICATION.md" },
+                            "Agent Extracteur": { type: "file", path: "Méthode GraphRAG/Prompts_Méthode_GraphRAG/Agent Extracteur.md" },
+                            "Agent Traverseur": { type: "file", path: "Méthode GraphRAG/Prompts_Méthode_GraphRAG/Agent Traverseur.md" }
+                        }
+                    },
+                    "Role Prompting": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Role-Prompting/METHODE_ROLE_EXPLICATION.md" },
+                            "Agent Définisseur": { type: "file", path: "Méthode Role-Prompting/Prompts_Méthode_Role/Agent Définisseur.md" }
+                        }
+                    },
+                    "Step-Back": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Step-Back/METHODE_STEPBACK_EXPLICATION.md" },
+                            "Agent StepBack": { type: "file", path: "Méthode Step-Back/Prompts_Méthode_StepBack/Agent StepBack.md" }
+                        }
+                    },
+                    "Generated Knowledge": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Generated-Knowledge/METHODE_GK_EXPLICATION.md" },
+                            "Agent Générateur": { type: "file", path: "Méthode Generated-Knowledge/Prompts_Méthode_GK/Agent Générateur.md" }
+                        }
+                    },
+                    "Analogical": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Analogical/METHODE_ANALOGICAL_EXPLICATION.md" },
+                            "Agent Analogiste": { type: "file", path: "Méthode Analogical/Prompts_Méthode_Analogical/Agent Analogiste.md" }
+                        }
+                    },
+                    "Prompt Chaining": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Prompt-Chaining/METHODE_CHAINING_EXPLICATION.md" },
+                            "Agent Orchestrateur": { type: "file", path: "Méthode Prompt-Chaining/Prompts_Méthode_Chaining/Agent Orchestrateur.md" }
+                        }
+                    },
+                    "Contextual Compression": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode Contextual-Compression/METHODE_CC_EXPLICATION.md" },
+                            "Agent Compresseur": { type: "file", path: "Méthode Contextual-Compression/Prompts_Méthode_Compression/Agent Compresseur.md" }
+                        }
+                    },
+                    "ART": {
+                        type: "folder",
+                        children: {
+                            "📘 Explication": { type: "file", path: "Méthode ART/METHODE_ART_EXPLICATION.md" },
+                            "Agent Sélectionneur": { type: "file", path: "Méthode ART/Prompts_Méthode_ART/Agent Sélectionneur.md" }
+                        }
+                    }
+                }
+            },
+            "📚 Prompts Métiers": {
+                type: "folder",
+                children: {
+                    "01-Technique": {
+                        type: "folder",
+                        children: {
+                            "Développement": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Développement.md" },
+                            "Tech-Lead": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Tech-Lead.md" },
+                            "Excel": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Excel.md" },
+                            "DevOps-SysAdmin": { type: "file", path: "Bibliothèque-Prompts/01-Technique/DevOps-SysAdmin.md" },
+                            "Data Science IA": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Data-Science-IA.md" },
+                            "Cybersécurité": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Cybersécurité.md" },
+                            "Design UX": { type: "file", path: "Bibliothèque-Prompts/01-Technique/Design-UX.md" }
+                        }
+                    },
+                    "02-Business": {
+                        type: "folder",
+                        children: {
+                            "Analyse": { type: "file", path: "Bibliothèque-Prompts/02-Business/Analyse.md" },
+                            "Management-Direction": { type: "file", path: "Bibliothèque-Prompts/02-Business/Management-Direction.md" },
+                            "Chef de Projet": { type: "file", path: "Bibliothèque-Prompts/02-Business/Chef-de-Projet.md" },
+                            "Product Owner": { type: "file", path: "Bibliothèque-Prompts/02-Business/Product-Owner.md" },
+                            "Commercial-Sales": { type: "file", path: "Bibliothèque-Prompts/02-Business/Commercial-Sales.md" },
+                            "Juridique": { type: "file", path: "Bibliothèque-Prompts/02-Business/Juridique.md" },
+                            "Achats": { type: "file", path: "Bibliothèque-Prompts/02-Business/Achats.md" }
+                        }
+                    },
+                    "03-Support": {
+                        type: "folder",
+                        children: {
+                            "RH": { type: "file", path: "Bibliothèque-Prompts/03-Support/RH.md" },
+                            "Documentation": { type: "file", path: "Bibliothèque-Prompts/03-Support/Documentation.md" },
+                            "Qualité-Sécurité": { type: "file", path: "Bibliothèque-Prompts/03-Support/Qualité-Sécurité.md" },
+                            "Support Client": { type: "file", path: "Bibliothèque-Prompts/03-Support/Support-Client.md" },
+                            "Formation": { type: "file", path: "Bibliothèque-Prompts/03-Support/Formation.md" },
+                            "Communication": { type: "file", path: "Bibliothèque-Prompts/03-Support/Communication.md" }
+                        }
+                    },
+                    "04-Métiers": {
+                        type: "folder",
+                        children: {
+                            "Comptabilité-Finance": { type: "file", path: "Bibliothèque-Prompts/04-Métiers/Comptabilité-Finance.md" },
+                            "Marketing": { type: "file", path: "Bibliothèque-Prompts/04-Métiers/Marketing.md" },
+                            "Industrie-Production": { type: "file", path: "Bibliothèque-Prompts/04-Métiers/Industrie-Production.md" },
+                            "Recherche-Veille": { type: "file", path: "Bibliothèque-Prompts/04-Métiers/Recherche-Veille.md" },
+                            "Logistique-SupplyChain": { type: "file", path: "Bibliothèque-Prompts/04-Métiers/Logistique-SupplyChain.md" }
+                        }
+                    },
+                    "05-Général": {
+                        type: "folder",
+                        children: {
+                            "Général": { type: "file", path: "Bibliothèque-Prompts/05-Général/Général.md" },
+                            "Méta-Prompting": { type: "file", path: "Bibliothèque-Prompts/05-Général/Méta-Prompting.md" }
+                        }
+                    }
+                }
+            },
+            "📖 Guides": {
+                type: "folder",
+                children: {
+                    "01 - Guide Démarrage": { type: "file", path: "Guides/01-Guide-Démarrage.md" },
+                    "02 - Arbre Décision": { type: "file", path: "Guides/02-Arbre-Décision-Méthodes.md" },
+                    "03 - Glossaire IA": { type: "file", path: "Guides/03-Glossaire-IA.md" },
+                    "04 - Workflows": { type: "file", path: "Guides/04-Workflows-Complets.md" },
+                    "05 - Troubleshooting": { type: "file", path: "Guides/05-Troubleshooting.md" },
+                    "06 - Comparatif LLMs": { type: "file", path: "Guides/06-Comparatif-LLMs.md" },
+                    "07 - Astuces": { type: "file", path: "Guides/07-Astuces-Raccourcis.md" },
+                    "08 - Intégrations": { type: "file", path: "Guides/08-Intégrations.md" },
+                    "09 - Cheat Sheets": { type: "file", path: "Guides/09-Cheat-Sheets.md" },
+                    "10 - Cas d'Études": { type: "file", path: "Guides/10-Cas-Études.md" },
+                    "11 - Architectures Agents": { type: "file", path: "Guides/11-Architectures-Agents.md" },
+                    "12 - Checklists": { type: "file", path: "Guides/12-Checklists.md" },
+                    "13 - Learning Paths": { type: "file", path: "Guides/13-Learning-Paths.md" }
+                }
+            }
+        };
+
+        function generateNavTree(structure, container) {
+            for (const [name, item] of Object.entries(structure)) {
+                if (item.type === "folder") {
+                    const folder = document.createElement('div');
+                    folder.className = 'nav-folder';
+                    folder.innerHTML = `
+                        <div class="nav-folder-header">
+                            <span class="icon">▶</span>
+                            📁 ${name}
+                        </div>
+                        <div class="nav-folder-content"></div>
+                    `;
+                    folder.querySelector('.nav-folder-header').onclick = (e) => {
+                        e.stopPropagation();
+                        folder.classList.toggle('open');
+                    };
+                    generateNavTree(item.children, folder.querySelector('.nav-folder-content'));
+                    container.appendChild(folder);
+                } else {
+                    const file = document.createElement('a');
+                    file.className = 'nav-file';
+                    file.href = '#';
+                    file.innerHTML = `<span class="file-icon">📄</span>${name}`;
+                    file.onclick = (e) => {
+                        e.preventDefault();
+                        loadMarkdown(item.path, name);
+                        document.querySelectorAll('.nav-file').forEach(f => f.classList.remove('active'));
+                        file.classList.add('active');
+                    };
+                    container.appendChild(file);
+                }
+            }
+        }
+
+        async function loadMarkdown(path, title) {
+            const content = document.getElementById('content');
+            content.innerHTML = '<div class="loading">⏳ Chargement...</div>';
+
+            try {
+                const response = await fetch(encodeURI(path));
+                if (!response.ok) throw new Error('Fichier non trouvé');
+                const text = await response.text();
+                content.innerHTML = marked.parse(text);
+                document.getElementById('breadcrumb').innerHTML = `📚 › <span>${title}</span>`;
+            } catch (error) {
+                content.innerHTML = `
+                    <div class="welcome">
+                        <h1 class="error">❌ Erreur</h1>
+                        <p>Impossible de charger : ${path}</p>
+                        <p style="color: #8b949e">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function filterTree() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.nav-file').forEach(file => {
+                const text = file.textContent.toLowerCase();
+                file.style.display = text.includes(search) ? 'flex' : 'none';
+            });
+            document.querySelectorAll('.nav-folder').forEach(folder => {
+                const hasVisibleChildren = folder.querySelector('.nav-file[style="display: flex"]') ||
+                    folder.querySelector('.nav-file:not([style])');
+                folder.style.display = hasVisibleChildren ? 'block' : 'none';
+                if (search && hasVisibleChildren) folder.classList.add('open');
+            });
+        }
+
+        generateNavTree(fileStructure, document.getElementById('navTree'));
+    </script>
+</body>
+
+</html>
