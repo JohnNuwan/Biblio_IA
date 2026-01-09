@@ -7,6 +7,18 @@
     <title>📚 Bibliothèque IA - Méthode Bmad</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -55,6 +67,61 @@
         // Structure COMPLETE avec chemins vérifiés
         const fileStructure = {
             "📖 INDEX": { type: "file", path: "INDEX.md" },
+            "🧭 GUIDE NAVIGATION": { type: "file", path: "GUIDE_NAVIGATION.md" },
+            "🔬 Concepts Avancés (ML & RL)": {
+                type: "folder",
+                children: {
+                    "01 - ML vs DL vs Transformers": { type: "file", path: "Concepts-Avances-ML-RL/01-ML-DL-RNN-Transformers.md" },
+                    "02 - Bases du RL": { type: "file", path: "Concepts-Avances-ML-RL/02-Reinforcement-Learning-Bases.md" },
+                    "03 - DQN, A2C, PPO": { type: "file", path: "Concepts-Avances-ML-RL/03-DQN-A2C-PPO-Explained.md" },
+                    "04 - World Models (MuZero)": { type: "file", path: "Concepts-Avances-ML-RL/04-World-Models-MuZero-Dreamer.md" },
+                    "05 - AgentZero": { type: "file", path: "Concepts-Avances-ML-RL/05-AgentZero-Next-Gen.md" }
+                }
+            },
+            "💼 Cas d'Usage (27)": {
+                type: "folder",
+                children: {
+                    "01 - IA Vocale": { type: "file", path: "Cas-Usage/01-IA-Vocale.md" },
+                    "02 - Service Client Auto": { type: "file", path: "Cas-Usage/02-Service-Client-Automatisé.md" },
+                    "03 - Vibe Coding": { type: "file", path: "Cas-Usage/03-Vibe-Coding-vs-Engineering.md" },
+                    "04 - Conversation Design": { type: "file", path: "Cas-Usage/04-Conversation-Design.md" },
+                    "05 - OpenLLM France": { type: "file", path: "Cas-Usage/05-OpenLLM-France.md" },
+                    "06 - Histoire IA Vocale": { type: "file", path: "Cas-Usage/06-IA-Vocale-Histoire.md" },
+                    "07 - ML API (FastAPI)": { type: "file", path: "Cas-Usage/07-ML-API-FastAPI-ONNX.md" },
+                    "08 - Low Code & IA": { type: "file", path: "Cas-Usage/08-IA-Low-Code-Visual.md" },
+                    "09 - Organisation Agentique": { type: "file", path: "Cas-Usage/09-Organisation-Agentique.md" },
+                    "10 - APIs for Agents": { type: "file", path: "Cas-Usage/10-APIs-Designed-by-Agents.md" },
+                    "11 - AI Tech Execution": { type: "file", path: "Cas-Usage/11-AI-Tech-Execution.md" },
+                    "12 - Creativity vs Cost": { type: "file", path: "Cas-Usage/12-IA-Creativite-vs-CostKilling.md" },
+                    "13 - Voice Security": { type: "file", path: "Cas-Usage/13-Voice-AI-Security-Deepfakes.md" },
+                    "14 - AI Security": { type: "file", path: "Cas-Usage/14-Securite-Systemes-IA.md" },
+                    "15 - AI Economy": { type: "file", path: "Cas-Usage/15-AI-Economy.md" },
+                    "16 - AI Environment": { type: "file", path: "Cas-Usage/16-AI-Mapping-Environment.md" },
+                    "17 - Responsible AI": { type: "file", path: "Cas-Usage/17-Responsible-AI-Developers.md" },
+                    "18 - Agent Evals": { type: "file", path: "Cas-Usage/18-Agent-Evals.md" },
+                    "19 - Data Spaces": { type: "file", path: "Cas-Usage/19-Data-Spaces-Digital-Commons.md" },
+                    "20 - AI to Product": { type: "file", path: "Cas-Usage/20-Adding-AI-to-Product.md" },
+                    "21 - Build Your Agents": { type: "file", path: "Cas-Usage/21-Build-Your-Own-Agents.md" },
+                    "22 - Data Governance": { type: "file", path: "Cas-Usage/22-AI-Data-Governance.md" },
+                    "23 - Hybrid AI": { type: "file", path: "Cas-Usage/23-Hybrid-AI-Visual-Dev.md" },
+                    "24 - GenAI Profitability": { type: "file", path: "Cas-Usage/24-GenAI-Profitability.md" },
+                    "25 - SEO to GEO": { type: "file", path: "Cas-Usage/25-SEO-to-GEO.md" },
+                    "26 - Grounding Agents": { type: "file", path: "Cas-Usage/26-Grounding-AI-Agents.md" },
+                    "27 - Agents & MCP": { type: "file", path: "Cas-Usage/27-Agents-and-MCP.md" }
+                }
+            },
+            "🎓 Tutoriels Python": {
+                type: "folder",
+                children: {
+                    "01 - Premier Agent": { type: "file", path: "Tutoriels/01-Construire-votre-premier-agent.md" },
+                    "02 - Prompting Avancé": { type: "file", path: "Tutoriels/02-Prompting-Avancé-pour-Agents.md" },
+                    "03 - Cas Recherche": { type: "file", path: "Tutoriels/03-Cas-Pratique-Recherche.md" },
+                    "04 - RAG & Chat": { type: "file", path: "Tutoriels/04-RAG-Chat-avec-Documents.md" },
+                    "05 - Multi-Agents": { type: "file", path: "Tutoriels/05-Multi-Agents-Collaboration.md" },
+                    "06 - Sorties JSON": { type: "file", path: "Tutoriels/06-Sorties-Structurees-JSON.md" },
+                    "07 - Local LLM (Ollama)": { type: "file", path: "Tutoriels/07-Local-LLM-Ollama.md" }
+                }
+            },
             "🧠 Méthodes IA": {
                 type: "folder",
                 children: {
@@ -365,9 +432,16 @@
             try {
                 const response = await fetch(encodeURI(path));
                 if (!response.ok) throw new Error('Fichier non trouvé');
-                const text = await response.text();
+                let text = await response.text();
+                
+                // FIX: Corriger les chemins d'images relatifs (../assets) pour qu'ils pointent vers (assets/) depuis la racine HTML
+                text = text.replace(/\.\.\\assets/g, 'assets').replace(/\.\.\/assets/g, 'assets');
+
                 content.innerHTML = marked.parse(text);
                 document.getElementById('breadcrumb').innerHTML = `📚 › <span>${title}</span>`;
+                if (window.MathJax) {
+                    MathJax.typesetPromise([content]).catch((err) => console.log(err));
+                }
             } catch (error) {
                 content.innerHTML = `
                     <div class="welcome">
